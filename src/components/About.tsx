@@ -31,11 +31,11 @@ const About = () => {
     ];
 
     return (
-        <section id="about" className="py-24 bg-white overflow-hidden">
+        <section id="about" className="bg-white overflow-hidden">
             <div className="section-padding">
                 <div className="flex flex-col lg:flex-row items-center gap-16">
                     {/* Visual Side */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
@@ -49,13 +49,13 @@ const About = () => {
                             </div>
 
                             {/* Floating Badge */}
-                            <motion.div 
+                            <motion.div
                                 animate={{ rotate: [12, 8, 12] }}
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                                 className="absolute -bottom-10 -right-10 bg-primary text-secondary font-bold p-8 rounded-full shadow-2xl border-8 border-white flex flex-col items-center justify-center w-40 h-40 z-20"
                             >
                                 <span className="text-3xl">100%</span>
-                                <span className="text-xs text-center font-bold uppercase tracking-widest leading-none mt-1">Safe &<br/>Loved</span>
+                                <span className="text-xs text-center font-bold uppercase tracking-widest leading-none mt-1">Safe &<br />Loved</span>
                             </motion.div>
                         </div>
 
@@ -78,7 +78,7 @@ const About = () => {
                                 About Our School
                             </motion.span>
                             <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary leading-tight">
-                                A Warm Home Away <br/> From <span className="text-primary italic font-heading">Home</span>
+                                A Warm Home Away <br /> From <span className="text-primary italic font-heading">Home</span>
                             </motion.h2>
                             <motion.p variants={fadeIn} className="text-lg text-text-light leading-relaxed text-balance">
                                 At Honey Bees Pre-School, we offer a unique and supportive environment where children feel at home while developing foundational skills. Located in Visakhapatnam, we pride ourselves on exceptional care and an engaging atmosphere.

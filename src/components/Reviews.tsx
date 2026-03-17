@@ -42,7 +42,7 @@ const Reviews = () => {
     ];
 
     return (
-        <section id="reviews" className="py-24 bg-white relative overflow-hidden">
+        <section id="reviews" className="bg-white relative overflow-hidden">
             <div className="section-padding">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
                     <div className="max-w-2xl space-y-4">

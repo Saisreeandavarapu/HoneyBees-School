@@ -22,10 +22,10 @@ const Gallery = () => {
     ];
 
     return (
-        <section id="gallery" className="py-24 bg-white relative overflow-hidden">
+        <section id="gallery" className="bg-white relative overflow-hidden">
             <div className="section-padding relative z-10">
                 <div className="text-center mb-16">
-                    <motion.span 
+                    <motion.span
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -33,7 +33,7 @@ const Gallery = () => {
                     >
                         Our Environment
                     </motion.span>
-                    <motion.h2 
+                    <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -41,7 +41,7 @@ const Gallery = () => {
                     >
                         School <span className="text-primary italic font-heading">Gallery</span>
                     </motion.h2>
-                    <motion.p 
+                    <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -84,7 +84,7 @@ const Gallery = () => {
                     ))}
                 </div>
 
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}

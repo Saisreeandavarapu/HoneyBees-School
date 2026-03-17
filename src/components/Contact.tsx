@@ -3,10 +3,10 @@ import { MapPin, Phone, Clock, Send, ExternalLink } from 'lucide-react';
 
 const Contact = () => {
     return (
-        <section id="contact" className="py-24 bg-amber-50/30 relative overflow-hidden">
+        <section id="contact" className="bg-amber-50/30 relative overflow-hidden">
             <div className="section-padding relative z-10">
                 <div className="text-center mb-20">
-                    <motion.span 
+                    <motion.span
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -14,7 +14,7 @@ const Contact = () => {
                     >
                         Get in Touch
                     </motion.span>
-                    <motion.h2 
+                    <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -22,7 +22,7 @@ const Contact = () => {
                     >
                         Visit Our <span className="text-primary italic font-heading">Center</span>
                     </motion.h2>
-                    <motion.p 
+                    <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -34,7 +34,7 @@ const Contact = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
                     {/* Contact Information Card */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -45,16 +45,16 @@ const Contact = () => {
                         <div className="absolute bottom-0 left-0 w-48 h-48 bg-amber-500 rounded-full mix-blend-multiply opacity-20 transform -translate-x-1/2 translate-y-1/2 group-hover:scale-110 transition-transform duration-700"></div>
 
                         <div className="relative z-10 space-y-10">
-                            <h3 className="text-3xl font-bold mb-8">Contact Information</h3>
+                            <h3 className="text-2xl lg:text-3xl font-bold mb-8">Contact Information</h3>
 
                             <div className="space-y-8">
-                                <div className="flex items-start gap-6 group/item">
+                                <div className="flex items-start md:gap-6 group/item">
                                     <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shrink-0 group-hover/item:bg-white group-hover/item:text-primary transition-all duration-300">
                                         <MapPin className="w-6 h-6" />
                                     </div>
                                     <div className="space-y-1">
                                         <h4 className="font-bold text-lg">Address</h4>
-                                        <p className="opacity-90 leading-relaxed font-medium">
+                                        <p className="opacity-90 leading-relaxed font-medium text-sm md:text-lg">
                                             LAWSON'S BAY COLONY, 4-43-16/1,<br />
                                             Pedda Waltair, Visakhapatnam,<br />
                                             Andhra Pradesh 530017
@@ -62,7 +62,7 @@ const Contact = () => {
                                     </div>
                                 </div>
 
-                                <div className="flex items-start gap-6 group/item">
+                                <div className="flex items-start md:gap-6 group/item">
                                     <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shrink-0 group-hover/item:bg-white group-hover/item:text-primary transition-all duration-300">
                                         <Phone className="w-6 h-6" />
                                     </div>
@@ -72,13 +72,13 @@ const Contact = () => {
                                     </div>
                                 </div>
 
-                                <div className="flex items-start gap-6 group/item">
+                                <div className="flex items-start md:gap-6 group/item">
                                     <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shrink-0 group-hover/item:bg-white group-hover/item:text-primary transition-all duration-300">
                                         <Clock className="w-6 h-6" />
                                     </div>
                                     <div className="space-y-1">
                                         <h4 className="font-bold text-lg">Working Hours</h4>
-                                        <p className="opacity-90 font-medium">Open Daily<br />Closes at 7:30 PM</p>
+                                        <p className="opacity-90 font-medium text-sm md:text-xl">Open Daily<br />Closes at 7:30 PM</p>
                                     </div>
                                 </div>
                             </div>
@@ -93,14 +93,14 @@ const Contact = () => {
                     </motion.div>
 
                     {/* Interactive Map Section */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         className="relative rounded-[3rem] overflow-hidden shadow-2xl border-[12px] border-white group"
                     >
                         <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
-                        
+
                         {/* Static Map Visual or Placeholder */}
                         <div className="w-full h-full bg-bg-light flex flex-col items-center justify-center p-12 text-center space-y-6">
                             <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-500">
@@ -110,10 +110,10 @@ const Contact = () => {
                                 <h3 className="text-2xl font-bold text-secondary">Find Us on Google Maps</h3>
                                 <p className="text-text-light text-balance">Get precise directions to our center in Lawson's Bay Colony.</p>
                             </div>
-                            <a 
-                                href="https://maps.google.com/?q=Honey+Bees+Pre-School+Visakhapatnam" 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
+                            <a
+                                href="https://maps.google.com/?q=Honey+Bees+Pre-School+Visakhapatnam"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 px-8 py-4 bg-white text-secondary font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all border border-gray-100"
                             >
                                 <ExternalLink className="w-5 h-5" />

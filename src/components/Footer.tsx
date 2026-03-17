@@ -1,67 +1,100 @@
-
+import { Facebook, Instagram, Twitter, MapPin, Phone, Heart } from 'lucide-react';
 
 const Footer = () => {
     return (
-        <footer className="bg-secondary text-amber-50 py-12 border-t-4 border-primary">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                    <div className="col-span-1 md:col-span-1">
-                        <div className="flex items-center space-x-3 mb-6">
-                            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-secondary font-bold text-xl">
+        <footer className="bg-secondary text-amber-50 pt-24 pb-12 relative overflow-hidden">
+            {/* Background Decoration */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -mb-48 -mr-48"></div>
+
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+                    <div className="col-span-1 lg:col-span-1 space-y-8">
+                        <div className="flex items-center space-x-4 group">
+                            <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-secondary font-bold text-2xl shadow-premium group-hover:rotate-12 transition-transform duration-500">
                                 HB
                             </div>
-                            <span className="text-2xl font-bold font-heading text-primary">Honey Bees</span>
+                            <span className="text-3xl font-bold font-heading text-primary tracking-tight">Honey Bees</span>
                         </div>
-                        <p className="text-amber-100/70 mb-6 leading-relaxed">
-                            A nurturing environment where children can thrive, learn, and grow. Providing the best Play School, Daycare, and Tuition services in Visakhapatnam.
+                        <p className="text-amber-100/60 leading-relaxed text-balance text-lg">
+                            We provide a nurturing environment where children thrive, learn, and grow through play-based excellence in Visakhapatnam.
                         </p>
                         <div className="flex space-x-4">
-                            <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary hover:text-secondary transition-colors">
-                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" /></svg>
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary hover:text-secondary transition-colors">
-                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
-                            </a>
+                            {[
+                                { icon: <Facebook className="w-5 h-5" />, href: "#" },
+                                { icon: <Instagram className="w-5 h-5" />, href: "#" },
+                                { icon: <Twitter className="w-5 h-5" />, href: "#" }
+                            ].map((social, i) => (
+                                <a 
+                                    key={i} 
+                                    href={social.href} 
+                                    className="w-12 h-12 rounded-2xl bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/10 hover:bg-primary hover:text-secondary hover:border-primary transition-all duration-300"
+                                >
+                                    {social.icon}
+                                </a>
+                            ))}
                         </div>
                     </div>
 
                     <div>
-                        <h4 className="text-lg font-bold mb-6 text-white">Quick Links</h4>
-                        <ul className="space-y-3 text-amber-100/70">
-                            <li><a href="#home" className="hover:text-primary transition-colors">Home</a></li>
-                            <li><a href="#about" className="hover:text-primary transition-colors">About Us</a></li>
-                            <li><a href="#services" className="hover:text-primary transition-colors">Services</a></li>
-                            <li><a href="#reviews" className="hover:text-primary transition-colors">Reviews</a></li>
-                            <li><a href="#contact" className="hover:text-primary transition-colors">Contact</a></li>
+                        <h4 className="text-xl font-bold mb-8 text-white tracking-wide">Quick Links</h4>
+                        <ul className="space-y-4 text-amber-100/60 font-medium">
+                            {['Home', 'About Us', 'Services', 'Gallery', 'Reviews', 'Contact'].map((link) => (
+                                <li key={link}>
+                                    <a href={`#${link.toLowerCase().replace(' ', '')}`} className="hover:text-primary transition-colors flex items-center gap-2 group">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover:bg-primary transition-colors"></span>
+                                        {link}
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
                     <div>
-                        <h4 className="text-lg font-bold mb-6 text-white">Working Details</h4>
-                        <ul className="space-y-3 text-amber-100/70">
-                            <li className="flex items-start">
-                                <span className="text-primary mr-2">✓</span>
-                                Safe & Secure Environment
+                        <h4 className="text-xl font-bold mb-8 text-white tracking-wide">Expertise</h4>
+                        <ul className="space-y-4 text-amber-100/60 font-medium">
+                            <li className="flex items-center gap-3">
+                                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                                    <Heart className="w-4 h-4" />
+                                </div>
+                                Personalized Care
                             </li>
-                            <li className="flex items-start">
-                                <span className="text-primary mr-2">✓</span>
-                                Daily Sanitation
+                            <li className="flex items-center gap-3">
+                                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                                    <MapPin className="w-4 h-4" />
+                                </div>
+                                Safe Environment
                             </li>
-                            <li className="flex items-start">
-                                <span className="text-primary mr-2">✓</span>
-                                Experienced Teachers
-                            </li>
-                            <li className="flex items-start">
-                                <span className="text-primary mr-2">✓</span>
-                                Open till 7:30 PM
+                            <li className="flex items-center gap-3">
+                                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                                    <Phone className="w-4 h-4" />
+                                </div>
+                                Active Learning
                             </li>
                         </ul>
+                    </div>
+
+                    <div>
+                        <h4 className="text-xl font-bold mb-8 text-white tracking-wide">Newsletter</h4>
+                        <p className="text-amber-100/60 mb-6 font-medium">Subscribe for school updates and events.</p>
+                        <div className="relative group">
+                            <input 
+                                type="email" 
+                                placeholder="Email address" 
+                                className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                            />
+                            <button className="absolute right-2 top-2 bottom-2 bg-primary text-secondary px-6 rounded-xl font-bold text-sm hover:bg-opacity-90 transition-all">
+                                Join
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <div className="pt-8 border-t border-amber-900/50 flex flex-col md:flex-row justify-between items-center text-sm text-amber-100/50">
-                    <p>&copy; {new Date().getFullYear()} Honey Bees Pre-School, Daycare and Tuition centre. All rights reserved.</p>
-                    <div className="mt-4 md:mt-0 flex space-x-4">
+                <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-amber-100/40">
+                    <p className="font-medium">
+                        &copy; {new Date().getFullYear()} Honey Bees Pre-School. Designed for Excellence.
+                    </p>
+                    <div className="flex items-center gap-8">
                         <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
                         <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
                     </div>

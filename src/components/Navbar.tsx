@@ -1,53 +1,102 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Phone, ArrowUpRight } from 'lucide-react';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const navLinks = [
+        { name: 'Home', href: '#home' },
+        { name: 'About', href: '#about' },
+        { name: 'Services', href: '#services' },
+        { name: 'Gallery', href: '#gallery' },
+        { name: 'Reviews', href: '#reviews' },
+        { name: 'Contact', href: '#contact' },
+    ];
 
     return (
-        <nav className="fixed w-full z-50 top-0 start-0 glass-panel border-b border-gray-200 dark:border-gray-600 transition-all duration-300">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-wrap items-center justify-between p-4">
-                    <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-                        <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-secondary font-bold text-xl shadow-inner">
+        <nav className={`fixed w-full z-50 top-0 transition-all duration-500 ${scrolled ? 'py-4 glass-nav' : 'py-6 bg-transparent'}`}>
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+                <div className="flex items-center justify-between">
+                    <a href="#" className="flex items-center gap-3 group">
+                        <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-secondary font-bold text-xl shadow-lg group-hover:rotate-6 transition-transform duration-300">
                             HB
                         </div>
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap text-secondary font-heading">Honey Bees</span>
+                        <div className="flex flex-col">
+                            <span className="text-2xl font-bold text-secondary font-heading leading-none">Honey Bees</span>
+                            <span className="text-[10px] uppercase tracking-[0.2em] text-text-light font-bold">Pre-School</span>
+                        </div>
                     </a>
-                    <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                        <a href="tel:08688330502" className="btn-primary text-sm px-3 sm:px-4 py-2 text-center rounded-full flex items-center gap-2">
-                            <svg className="w-4 h-4 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                            <span className="hidden sm:block">Call Now: 086883 30502</span>
-                        </a>                        <button onClick={() => setIsMenuOpen(!isMenuOpen)} data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-sticky" aria-expanded={isMenuOpen}>
-                            <span className="sr-only">Open main menu</span>
-                            <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
-                            </svg>
-                        </button>
+
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex items-center gap-1">
+                        {navLinks.map((link) => (
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                className="px-5 py-2 text-sm font-semibold text-text-light hover:text-primary-dark transition-colors relative group"
+                            >
+                                {link.name}
+                                <span className="absolute bottom-0 left-5 right-5 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-center"></span>
+                            </a>
+                        ))}
                     </div>
-                    <div className={`items-center justify-between ${isMenuOpen ? 'block' : 'hidden'} w-full md:flex md:w-auto md:order-1`} id="navbar-sticky">
-                        <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
-                            <li>
-                                <a href="#home" className="block py-2 px-3 text-secondary rounded hover:bg-primary/20 md:hover:bg-transparent md:hover:text-primary-dark md:p-0 transition-colors">Home</a>
-                            </li>
-                            <li>
-                                <a href="#about" className="block py-2 px-3 text-secondary rounded hover:bg-primary/20 md:hover:bg-transparent md:hover:text-primary-dark md:p-0 transition-colors">About</a>
-                            </li>
-                            <li>
-                                <a href="#services" className="block py-2 px-3 text-secondary rounded hover:bg-primary/20 md:hover:bg-transparent md:hover:text-primary-dark md:p-0 transition-colors">Services</a>
-                            </li>
-                            <li>
-                                <a href="#gallery" className="block py-2 px-3 text-secondary rounded hover:bg-primary/20 md:hover:bg-transparent md:hover:text-primary-dark md:p-0 transition-colors">Gallery</a>
-                            </li>
-                            <li>
-                                <a href="#reviews" className="block py-2 px-3 text-secondary rounded hover:bg-primary/20 md:hover:bg-transparent md:hover:text-primary-dark md:p-0 transition-colors">Reviews</a>
-                            </li>
-                            <li>
-                                <a href="#contact" className="block py-2 px-3 text-secondary rounded hover:bg-primary/20 md:hover:bg-transparent md:hover:text-primary-dark md:p-0 transition-colors">Contact</a>
-                            </li>
-                        </ul>
+
+                    <div className="flex items-center gap-4">
+                        <a href="tel:08688330502" className="hidden lg:flex items-center gap-2 bg-secondary text-white px-6 py-3 rounded-2xl font-bold hover:bg-secondary-light transition-all shadow-lg hover:shadow-xl active:scale-95">
+                            <Phone className="w-4 h-4" />
+                            <span>086883 30502</span>
+                        </a>
+
+                        <button
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            className="p-3 bg-white/50 backdrop-blur-md rounded-xl md:hidden text-secondary hover:bg-primary transition-colors duration-300"
+                        >
+                            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                        </button>
                     </div>
                 </div>
             </div>
+
+            {/* Mobile Menu */}
+            <AnimatePresence>
+                {isMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95, y: -20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                        transition={{ duration: 0.3, ease: "circOut" }}
+                        className="fixed inset-x-4 top-24 bg-white/95 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-2xl border border-gray-100 md:hidden z-40"
+                    >
+                        <div className="flex flex-col gap-4">
+                            {navLinks.map((link) => (
+                                <a
+                                    key={link.name}
+                                    href={link.href}
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="flex items-center justify-between py-4 px-6 bg-bg-light rounded-2xl text-lg font-bold text-secondary hover:bg-primary hover:text-white transition-all group"
+                                >
+                                    {link.name}
+                                    <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                </a>
+                            ))}
+                            <a href="tel:08688330502" className="mt-4 flex items-center justify-center gap-2 bg-primary text-secondary py-5 rounded-2xl font-bold text-lg shadow-lg">
+                                <Phone className="w-5 h-5" />
+                                Contact Us
+                            </a>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </nav>
     );
 };

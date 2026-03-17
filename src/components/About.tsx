@@ -1,66 +1,103 @@
-
+import { motion } from 'framer-motion';
+import { Home, ShieldCheck, Heart, Clock } from 'lucide-react';
 
 const About = () => {
-    return (
-        <section id="about" className="py-20 bg-white">
-            <div className="section-padding">
-                <div className="flex flex-col lg:flex-row items-center gap-12">
-                    {/* Image/Visual Side */}
-                    <div className="w-full lg:w-1/2 relative">
-                        <div className="aspect-square md:aspect-video lg:aspect-square bg-bg-light rounded-3xl overflow-hidden relative shadow-2xl border-4 border-white">
-                            {/* Temporary placeholder mimicking a lively environment */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-amber-200 to-orange-300 opacity-80 mix-blend-overlay"></div>
-                            <div className="absolute inset-0 flex items-center justify-center text-6xl shadow-inner">🧸 🎨 📚</div>
+    const fadeIn = {
+        hidden: { opacity: 0, x: -20 },
+        visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+    };
 
-                            {/* Decorative badge */}
-                            <div className="absolute -bottom-6 -right-6 bg-primary text-secondary font-bold p-6 rounded-full shadow-xl border-4 border-white flex flex-col items-center justify-center w-32 h-32 transform rotate-12">
-                                <span className="text-2xl">100%</span>
-                                <span className="text-xs text-center leading-tight">Child Care</span>
+    const features = [
+        {
+            icon: <Home className="w-6 h-6" />,
+            title: "Excellent Infrastructure",
+            desc: "Spacious 2600 sq.ft facility designed specifically for early childhood learning."
+        },
+        {
+            icon: <ShieldCheck className="w-6 h-6" />,
+            title: "Health & Safety",
+            desc: "Strict sanitation, CCTV coverage, and safe environment protocols."
+        },
+        {
+            icon: <Heart className="w-6 h-6" />,
+            title: "Individual Care",
+            desc: "Well-experienced teachers providing personalized attention to every child."
+        },
+        {
+            icon: <Clock className="w-6 h-6" />,
+            title: "Flexible Timings",
+            desc: "Daycare open till 7:30 PM, supporting working parents with reliable care."
+        }
+    ];
+
+    return (
+        <section id="about" className="py-24 bg-white overflow-hidden">
+            <div className="section-padding">
+                <div className="flex flex-col lg:flex-row items-center gap-16">
+                    {/* Visual Side */}
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="w-full lg:w-1/2 relative"
+                    >
+                        <div className="aspect-square bg-bg-light rounded-[3rem] overflow-hidden relative shadow-2xl border-[12px] border-white group">
+                            <div className="absolute inset-0 bg-gradient-to-br from-amber-200 to-orange-300 opacity-40 mix-blend-overlay group-hover:scale-110 transition-transform duration-700"></div>
+                            <div className="absolute inset-0 flex items-center justify-center text-7xl transform group-hover:scale-125 transition-transform duration-500">
+                                🏠🎨📚
                             </div>
+
+                            {/* Floating Badge */}
+                            <motion.div 
+                                animate={{ rotate: [12, 8, 12] }}
+                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                                className="absolute -bottom-10 -right-10 bg-primary text-secondary font-bold p-8 rounded-full shadow-2xl border-8 border-white flex flex-col items-center justify-center w-40 h-40 z-20"
+                            >
+                                <span className="text-3xl">100%</span>
+                                <span className="text-xs text-center font-bold uppercase tracking-widest leading-none mt-1">Safe &<br/>Loved</span>
+                            </motion.div>
                         </div>
 
-                        {/* Background decorative blob */}
-                        <div className="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-amber-50 rounded-full blur-3xl opacity-70"></div>
-                    </div>
+                        {/* Background Decoration */}
+                        <div className="absolute -z-10 -top-20 -left-20 w-80 h-80 bg-primary/10 rounded-full blur-[80px]"></div>
+                    </motion.div>
 
                     {/* Content Side */}
-                    <div className="w-full lg:w-1/2 space-y-6">
-                        <div className="inline-block mb-2 text-primary-dark font-bold text-sm uppercase tracking-wider">
-                            About Our School
-                        </div>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl">
-                            A Home Away From Home
-                        </h2>
-                        <p className="text-lg text-text-light leading-relaxed">
-                            At Honey Bees Pre-School, we offer a unique and supportive environment where children feel at home while developing foundational skills. Located in Visakhapatnam, we pride ourselves on exceptional care and an engaging atmosphere.
-                        </p>
+                    <div className="w-full lg:w-1/2 space-y-8">
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={{
+                                visible: { transition: { staggerChildren: 0.1 } }
+                            }}
+                            className="space-y-6"
+                        >
+                            <motion.span variants={fadeIn} className="inline-block text-primary-dark font-bold text-sm uppercase tracking-[0.3em]">
+                                About Our School
+                            </motion.span>
+                            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary leading-tight">
+                                A Warm Home Away <br/> From <span className="text-primary italic font-heading">Home</span>
+                            </motion.h2>
+                            <motion.p variants={fadeIn} className="text-lg text-text-light leading-relaxed text-balance">
+                                At Honey Bees Pre-School, we offer a unique and supportive environment where children feel at home while developing foundational skills. Located in Visakhapatnam, we pride ourselves on exceptional care and an engaging atmosphere.
+                            </motion.p>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
-                            <div className="bg-amber-50 p-5 rounded-2xl hover:shadow-md transition-shadow">
-                                <div className="text-2xl mb-3">🏛️</div>
-                                <h3 className="font-bold text-xl mb-2 text-secondary">Excellent Infrastructure</h3>
-                                <p className="text-sm text-text-light">Spacious 2600 sq.ft facility designed specifically for early childhood learning and play.</p>
-                            </div>
-
-                            <div className="bg-amber-50 p-5 rounded-2xl hover:shadow-md transition-shadow">
-                                <div className="text-2xl mb-3">🧼</div>
-                                <h3 className="font-bold text-xl mb-2 text-secondary">Health & Safety</h3>
-                                <p className="text-sm text-text-light">Strict daily sanitation, safety measurements, COVID-19 protocols, and comprehensive CCTV coverage.</p>
-                            </div>
-
-                            <div className="bg-amber-50 p-5 rounded-2xl hover:shadow-md transition-shadow">
-                                <div className="text-2xl mb-3">🧑‍🏫</div>
-                                <h3 className="font-bold text-xl mb-2 text-secondary">Individual Care</h3>
-                                <p className="text-sm text-text-light">Well-experienced teachers providing personalized attention to every student's growth.</p>
-                            </div>
-
-                            <div className="bg-amber-50 p-5 rounded-2xl hover:shadow-md transition-shadow">
-                                <div className="text-2xl mb-3">⏰</div>
-                                <h3 className="font-bold text-xl mb-2 text-secondary">Flexible Timings</h3>
-                                <p className="text-sm text-text-light">Convenient daycare open till 7:30 PM, supporting working parents with reliable care.</p>
-                            </div>
-                        </div>
-
+                            <motion.div variants={fadeIn} className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
+                                {features.map((f, i) => (
+                                    <div key={i} className="flex gap-4 p-2 group">
+                                        <div className="w-12 h-12 shrink-0 rounded-2xl bg-bg-light flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-secondary transition-colors duration-300">
+                                            {f.icon}
+                                        </div>
+                                        <div>
+                                            <h3 className="font-bold text-secondary mb-1">{f.title}</h3>
+                                            <p className="text-sm text-text-light leading-relaxed">{f.desc}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </motion.div>
+                        </motion.div>
                     </div>
                 </div>
             </div>

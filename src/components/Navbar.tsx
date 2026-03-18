@@ -5,6 +5,7 @@ import { Menu, X, Phone, ArrowUpRight } from 'lucide-react';
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [activeSection, setActiveSection] = useState('home');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -14,20 +15,41 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveSection(entry.target.id);
+                    }
+                });
+            },
+            { threshold: 0.5, rootMargin: '-80px 0px -20% 0px' }
+        );
+
+        const sections = ['home', 'about', 'services', 'gallery', 'reviews', 'contact'];
+        sections.forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
     const navLinks = [
-        { name: 'Home', href: '#home' },
-        { name: 'About', href: '#about' },
-        { name: 'Services', href: '#services' },
-        { name: 'Gallery', href: '#gallery' },
-        { name: 'Reviews', href: '#reviews' },
-        { name: 'Contact', href: '#contact' },
+        { name: 'Home', href: '#home', id: 'home' },
+        { name: 'About', href: '#about', id: 'about' },
+        { name: 'Services', href: '#services', id: 'services' },
+        { name: 'Gallery', href: '#gallery', id: 'gallery' },
+        { name: 'Reviews', href: '#reviews', id: 'reviews' },
+        { name: 'Contact', href: '#contact', id: 'contact' },
     ];
 
     return (
         <nav className={`fixed w-full z-50 top-0 transition-all duration-500 ${scrolled ? 'py-4 glass-nav' : 'py-6 bg-transparent'}`}>
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="flex items-center justify-between">
-                    <a href="#" className="flex items-center gap-3 group">
+                    <a href="#home" className="flex items-center gap-3 group" onClick={() => setActiveSection('home')}>
                         <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-secondary font-bold text-xl shadow-lg group-hover:rotate-6 transition-transform duration-300">
                             HB
                         </div>
@@ -43,10 +65,10 @@ const Navbar = () => {
                             <a
                                 key={link.name}
                                 href={link.href}
-                                className="px-5 py-2 text-sm font-semibold text-text-light hover:text-primary-dark transition-colors relative group"
+                                className={`px-5 py-2 text-sm font-semibold transition-all relative group ${activeSection === link.id ? 'text-primary-dark' : 'text-text-light hover:text-primary-dark'}`}
                             >
                                 {link.name}
-                                <span className="absolute bottom-0 left-5 right-5 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-center"></span>
+                                <span className={`absolute bottom-0 left-5 right-5 h-0.5 bg-primary transition-transform origin-center ${activeSection === link.id ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
                             </a>
                         ))}
                     </div>
@@ -82,11 +104,14 @@ const Navbar = () => {
                                 <a
                                     key={link.name}
                                     href={link.href}
-                                    onClick={() => setIsMenuOpen(false)}
-                                    className="flex items-center justify-between py-4 px-6 bg-bg-light rounded-2xl text-lg font-bold text-secondary hover:bg-primary hover:text-white transition-all group"
+                                    onClick={() => {
+                                        setIsMenuOpen(false);
+                                        setActiveSection(link.id);
+                                    }}
+                                    className={`flex items-center justify-between py-4 px-6 rounded-2xl text-lg font-bold transition-all group ${activeSection === link.id ? 'bg-primary text-secondary' : 'bg-bg-light text-secondary hover:bg-primary hover:text-white'}`}
                                 >
                                     {link.name}
-                                    <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    <ArrowUpRight className={`w-5 h-5 transition-opacity ${activeSection === link.id ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
                                 </a>
                             ))}
                             <a href="tel:08688330502" className="mt-4 flex items-center justify-center gap-2 bg-primary text-secondary py-5 rounded-2xl font-bold text-lg shadow-lg">

@@ -30,7 +30,7 @@ const Hero = () => {
     ];
 
     return (
-        <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-50 via-white to-transparent">
+        <section id="home" className="py-10 relative min-h-screen flex items-center overflow-hidden bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-50 via-white to-transparent">
             {/* Animated Background Orbs */}
             <div className="absolute top-[-10%] right-[-5%] w-[40%] aspect-square bg-primary/20 rounded-full blur-[120px] animate-blob"></div>
             <div className="absolute bottom-[5%] left-[-5%] w-[30%] aspect-square bg-amber-200/30 rounded-full blur-[100px] animate-blob" style={{ animationDelay: '2s' }}></div>
